@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>Dipper</title>
+	<link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/themes/base/jquery-ui.css'>
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js'></script>
+	<script src='http://code.jquery.com/ui/1.10.3/jquery-ui.js'></script>
+	<script src="js/prefixfree.min.js"></script>
+    <style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			background-color: #F2EEE9;
+			font: normal 13px/1.5 Georgia, Serif;
+			color: #333;
+		}
+		.wrapper {
+			width: 705px;
+			margin: 20px auto;
+			padding: 20px;
+		}
+
+		h2 {
+			background-color: #2196F3;
+			color: #FFFFFF;
+			text-align: center;
+			padding: 5px 0 8px 0;
+		}
+		.clear {
+			clear: both;
+		}
+		.items {
+			display: block;
+			margin: 20px 0;
+		}
+		.item {
+			background-color: #fff;
+			float: left;
+			margin: 0 95px 10px 0;
+			width: 205px;
+			padding: 10px;
+			height: auto;
+		}
+		.item img {
+			display: block;
+			margin: auto;
+		}
+
+		button {
+			border: 1px solid #722A1B;
+			padding: 12px 89px;
+			background-color: #E51C23;
+			color: #FFFFFF;
+			text-transform: uppercase;
+			float: right;
+			margin: 10px 0;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		span {
+			float: right;
+		}
+		.shopping-cart {
+			display: inline-block;
+			background: url('http://cdn1.iconfinder.com/data/icons/jigsoar-icons/24/_cart.png') no-repeat 0 0;
+			width: 24px;
+			height: 24px;
+			margin: 0 10px 0 0;
+		}
+
+
+
+
+		.cart-button {
+			position: relative;
+			display: inline-block;
+		}
+
+		.cart-dropdown {
+			display: none;
+			position: absolute;
+			background-color: #f9f9f9;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			padding: 12px 16px;
+			z-index: 1;
+		}
+
+		.cart-button:hover .cart-dropdown {
+			display: block;
+		}
+		li{
+			underline:none;
+			list-style-type: none;
+		}
+
+	</style>
+</head>
+
+<body>
+
+<!-- wrapper -->
+	<div class="wrapper">
+		<div class="cart-button" style="float:right;">
+			Total in &#8377;: <input type="text" id="PicExtPricecart" Size=3 readonly>&nbsp;
+			<a><span> <i class="shopping-cart"></i></span></a>
+			<div class="cart-dropdown">
+				<ul id="listView"></ul>
+			</div> 
+		</div>
+ 
+		<div class="clear"></div>
+<!-- items -->
+		<div class="items">
+<!-- single item -->
+				<div class="item">
+					<h2>Sofit Chocolate Milk</h2>
+						<img src="https://www.aaramshop.com/thumb_img.php?src=14529358471.jpg&section=product&x=200&y=200" alt="item" />
+					<div class="clear"></div>
+					<h3>Item 1</h3>
+					<p>	Price in &#8377;: <input type="text" id="PicExtPrice" Size=3 readonly>  
+						<SELECT NAME="pricing" onChange="calculatePrice()" id="pricing">
+							  <OPTION value="0">Quantity</OPTION>
+							  <OPTION value="25">1</OPTION>
+							  <OPTION value="50">2</OPTION>
+							  <OPTION value="75">3</OPTION>
+							  <OPTION value="100">4</OPTION>
+							  <OPTION value="125">5</OPTION>
+						</SELECT>
+					</p>
+					<button id='1' class="add-to-cart" type="button">Buy</button>
+				</div>
+<!--/ single item -->
+		
+<!-- single item -->
+				<div class="item">
+					<h2>Sofit Mango Milk</h2>
+					<img src="https://www.namastechennai.com/temporary/img/4c7c12db4a19ba6251487fb9b3c0380e79b1ef9e.jpg" alt="item" />
+					<h3>Item 2</h3>
+					<p>Price in &#8377;: <input type="text" id="PicExtPrice1" Size=3 readonly>  
+						<SELECT NAME="hddItem" onChange="calculatePrice()" id="hddItem">
+						  <OPTION value="0">Quantity</OPTION>
+						  <OPTION value="25">1</OPTION>
+						  <OPTION value="50">2</OPTION>
+						  <OPTION value="75">3</OPTION>
+						  <OPTION value="100">4</OPTION>
+						  <OPTION value="125">5</OPTION>
+						</SELECT>
+					</p>
+					<button id='2' class="add-to-cart" type="button">Buy</button>
+				</div>
+<!--/ single item -->
+		</div>
+<!--/ items -->
+	</div>
+
+<!--/ wrapper -->
+  
+	<script> 
+		  function calculatePrice(myform){
+
+		  //Get selected data  
+		  var elt = document.getElementById("pricing");
+		  var memory = elt.options[elt.selectedIndex].value;
+			
+		  var elt = document.getElementById("hddItem");
+		  var hdd = elt.options[elt.selectedIndex].value;
+			
+		  //convert data to integers
+		  memory = parseInt(memory);
+		  hdd = parseInt(hdd);	
+			
+		  //calculate total value  
+		  var total = memory; 
+		  var total2 = hdd;
+		  var checkout = total + total2;
+		  
+		  //print value to  PicExtPrice 
+		  document.getElementById("PicExtPrice").value=total;
+		   document.getElementById("PicExtPrice1").value=total2;
+			document.getElementById("PicExtPricecart").value=checkout;
+		  }
+		  
+		  $(document).ready(function(){
+		   $('#1').on('click',function(){
+		   var dyn_button = '<li><div><p>Sofit Chocolate Milk</p><img src="https://www.aaramshop.com/thumb_img.php?src=14529358471.jpg&section=product&x=200&y=200" alt="item" /></div></li>';
+		   $('#listView').append(dyn_button);
+		   });
+			});
+
+		$(document).ready(function(){
+		   $('#2').on('click',function(){
+		   var dyn_button = '<li><div><p>Sofit Mango Milk</p><img src="https://www.namastechennai.com/temporary/img/4c7c12db4a19ba6251487fb9b3c0380e79b1ef9e.jpg" /></div></li>';
+		   $('#listView').append(dyn_button);
+			});
+			});
+
+	</script>
+	
+	
+<script src="js/index.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!Doctype html>
+<title>Dipper</title>
+<style>
+	.dipperswitch {
+    position: relative; width: 180px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.dipperswitch-checkbox {
+    display: none;
+}
+.dipperswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px double #FFFFFF; 
+	outline: gray 1px solid;
+}
+
+.dipperswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.dipperswitch-inner:before, .dipperswitch-inner:after {
+    display: block;
+	float: left;
+	width: 50%;
+	height: 30px;
+	padding: 0;
+	line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+	
+}
+.dipperswitch-inner:before {
+    content: "Per Truck";
+    padding-left: 10px;
+    background-color: #73C940; color: #FFFFFF;
+	text-align: center;
+}
+.dipperswitch-inner:after {
+    content: "Per Ton";
+    padding-right: 10px;
+    background-color: #E55B25; color: #FFFFFF;
+    text-align: center;
+}
+.dipperswitch-switch {
+    display: block; width: 25px; margin: -2px;
+    background: #000000;
+    position: absolute; top: 0; bottom: 0;
+    right: 156px;
+    border: 2px solid #000000; 
+    transition: all 0.3s ease-in 0s; 
+}
+
+.dipperswitch-checkbox:checked + .dipperswitch-label .dipperswitch-inner {
+    margin-left: 0;
+}
+.dipperswitch-checkbox:checked + .dipperswitch-label .dipperswitch-switch {
+    right: 0px; 
+}
+
+
+
+</style>	
+<!--------------------------------------body----------------------------------------->
+<body>
+	<center>
+	<br>
+	<br>
+	<div class="dipperswitch">
+		<input type="checkbox" name="dipperswitch" class="dipperswitch-checkbox" id="mydipperswitch" checked>
+		<label class="dipperswitch-label" for="mydipperswitch">
+			<span class="dipperswitch-inner"></span>
+			<span class="dipperswitch-switch"></span>
+		</label>
+	</div>
+	</center>
+</body>
+</html>
